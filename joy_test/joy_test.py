@@ -23,7 +23,7 @@ class WheelControlIntNode(Node):
         self.rr_speed_pub = self.create_publisher(Int32, '/wheel_rear_right_speed', 10)
         self.rr_angle_pub = self.create_publisher(Int32, '/wheel_rear_right_angle', 10)
 
-        self.get_logger().info("4WS Tekerlek Kontrolcüsü Başlatıldı (Merkezi Dönüş Modu)...")
+        self.get_logger().info("Tekerlek Kontrolcüsü Başlatıldı (Merkezi Dönüş Modu)...")
         
         self.axis_speed_index = 1 
         self.axis_angle_index = 0
@@ -79,7 +79,6 @@ class WheelControlIntNode(Node):
                 fl_spd = int(vel_outer)
                 rl_spd = int(vel_outer)
 
-        # 3. YAYINLA
         self.publish_int32(self.fl_speed_pub, fl_spd)
         self.fr_speed_pub.publish(self.create_int(fr_spd))
         self.rl_speed_pub.publish(self.create_int(rl_spd))
