@@ -23,18 +23,22 @@ class WheelControlIntNode(Node):
         self.rr_speed_pub = self.create_publisher(Int32, '/wheel_rear_right_speed', 10)
         self.rr_angle_pub = self.create_publisher(Int32, '/wheel_rear_right_angle', 10)
 
-        self.get_logger().info("Tekerlek Kontrolcüsü Başlatıldı (Merkezi Dönüş Modu)...")
+        self.get_logger().info("Tekerlekk Kontrolcüsü Başlatıldı (Merkezi Dönüş Modu)...")
         
         self.axis_speed_index = 1 
         self.axis_angle_index = 0
         
         self.W = 84.0 
         self.L = 113.0 
-        self.max_steer_angle = 45.0 
+        self.max_steer_angle = 53.0 
 
     def joy_callback(self, msg):
         raw_speed = msg.axes[self.axis_speed_index] * 63.0
         raw_turn  = msg.axes[self.axis_angle_index]
+        if raw_speed>63.0:
+            raw_speed=63.0
+        elif raw_speed<-63.0:
+            raw_speed = -63.0
         
         if abs(raw_speed) < 2.0: raw_speed = 0.0
         if abs(raw_turn) < 0.05: raw_turn = 0.0
