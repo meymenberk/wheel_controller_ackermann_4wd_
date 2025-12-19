@@ -61,7 +61,15 @@ class WheelControlIntNode(Node):
             ratio_outer = dist_outer / dist_center
             
             vel_inner = raw_speed * ratio_inner
+            if vel_inner>63.0:
+                vel_inner=63.0
+            elif vel_inner<-63.0:
+                vel_inner=-63.0
             vel_outer = raw_speed * ratio_outer
+            if vel_outer>63.0:
+                vel_outer=63.0
+            elif vel_outer<-63.0:
+                vel_outer=-63.0
             
             if raw_turn > 0:
                 fl_ang = int(180 - inner_angle)
